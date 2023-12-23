@@ -1,13 +1,13 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import {useEffect, useState} from "react";
+import {Input} from "../ui/input";
+import {Button} from "../ui/button";
 import Swal from "sweetalert2";
-import { useLoginMutation } from "@/redux/features/auth/authApi";
+import {useLoginMutation} from "@/redux/features/auth/authApi";
 import Error from "../shared/Error";
-import { useAppDispatch } from "@/redux/hooks";
-import { userLoggedIn } from "@/redux/features/auth/authSlice";
-import { useRouter } from "next/router";
+import {useAppDispatch} from "@/redux/hooks";
+import {userLoggedIn} from "@/redux/features/auth/authSlice";
+import {useRouter} from "next/router";
 
 interface CustomError {
   status: number;
@@ -26,13 +26,12 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const [login, { data, isError, isLoading, isSuccess, error }] =
-    useLoginMutation();
+  const [login, {data, isError, isLoading, isSuccess, error}] = useLoginMutation();
   const dispatch = useAppDispatch();
 
   const router = useRouter();
   //login
-  const handleLogin = (e: { preventDefault: () => void }) => {
+  const handleLogin = (e: {preventDefault: () => void}) => {
     e.preventDefault();
 
     if (email !== "" && password !== "") {
@@ -40,7 +39,6 @@ const LoginForm = () => {
         email,
         password,
       });
-    
     } else {
       Swal.fire("Sorry!", `Please fill up all required fields`, "info");
     }
@@ -49,7 +47,7 @@ const LoginForm = () => {
     if (isError || error) {
       setErrorMessage((error as CustomError)?.data?.message);
     } else {
-      dispatch(userLoggedIn({ token: data?.accessToken }));
+      dispatch(userLoggedIn({token: data?.accessToken}));
     }
   }, [data, error, isError]);
 
@@ -69,44 +67,20 @@ const LoginForm = () => {
           <h1 className="my-4 text-4xl font-bold">Login</h1>
           <p className="text-sm text-gray-700">Login to access your account</p>
         </div>
-        <form
-          className=" ng-untouched ng-pristine ng-valid"
-          onSubmit={handleLogin}
-        >
+        <form className=" ng-untouched ng-pristine ng-valid" onSubmit={handleLogin}>
           <div className="w-4/6 mx-auto">
             <div className="flex mb-6">
-              <Input
-                type="email"
-                className="mb-2"
-                placeholder="Email"
-                value={email}
-                required
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <span className="input-right-icon ">
-                {/* <MdEmail className="w-5 h-5" /> */}
-              </span>
+              <Input type="email" className="mb-2" placeholder="Email" value={email} required onChange={(e) => setEmail(e.target.value)} />
+              <span className="input-right-icon ">{/* <MdEmail className="w-5 h-5" /> */}</span>
             </div>
             <div className="flex">
-              <Input
-                className="mb-2"
-                type="password"
-                required
-                placeholder="*****"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <span className="input-right-icon">
-                {/* <MdPassword className="w-5 h-5" /> */}
-              </span>
+              <Input className="mb-2" type="password" required placeholder="*****" value={password} onChange={(e) => setPassword(e.target.value)} />
+              <span className="input-right-icon">{/* <MdPassword className="w-5 h-5" /> */}</span>
             </div>
           </div>
           <div className="space-y-2 w-4/6 mx-auto">
             <div>
-              <Button
-                type="submit"
-                className="w-full px-8 py-3 font-semibold rounded-md bg-primary text-gray-300 mt-8 flex justify-center items-center"
-              >
+              <Button type="submit" className="w-full px-8 py-3 font-semibold rounded-md bg-primary text-gray-300 mt-8 flex justify-center items-center">
                 <span>Login</span>
               </Button>
             </div>
@@ -116,14 +90,9 @@ const LoginForm = () => {
       </div>
       <p className="md:px-6 text-sm text-center text-gray-700 align-bottom mt-8 w-4/6 mx-auto">
         Don't have an account yet?
-        <Link
-          href="/register"
-          className="hover:underline text-sky-500 ml-1 font-bold"
-        >
+        <Link href="/register" className="hover:underline text-sky-500 ml-1 font-bold">
           Quick Sign up here
         </Link>
-    
-        
       </p>
     </div>
   );

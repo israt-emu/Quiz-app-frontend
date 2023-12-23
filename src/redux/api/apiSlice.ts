@@ -15,6 +15,6 @@ export const api = createApi({
       return headers;
     },
   }),
-  tagTypes: ["Services", "singleService", "cart", "faq", "feedback", "Bookings", "users", "reviewRatings", "booking", "user", "faqs", "carts", "blog", "blogs", "feedbacks"],
+  tagTypes: ["questions", "quizquestion", "question", "answers", "options", "categories", "sessions", "users", "user", "Quizzes", "quiz"],
   endpoints: () => ({}),
 });

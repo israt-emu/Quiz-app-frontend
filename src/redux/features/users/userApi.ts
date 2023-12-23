@@ -31,9 +31,9 @@ export const userApi = api.injectEndpoints({
     }),
     updateUser: builder.mutation({
       query: (data) => ({
-        url: `/users`,
+        url: `/users/${data?.id}`,
         method: "PATCH",
-        body: data,
+        body: data?.data,
       }),
       invalidatesTags: ["users"],
     }),

@@ -23,15 +23,15 @@ interface CustomError {
 }
 
 const RegisterForm = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [name, setName] = useState("");
+  const [profileImg, setProfileImg] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
   const [repetPassword, setRepetPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [profileImg, setProfileImg] = useState("");
+
   const [signUp, {data: responseData, isError, isLoading, isSuccess, error}] = useSignUpMutation();
 
   const router = useRouter();
@@ -44,7 +44,7 @@ const RegisterForm = () => {
       return;
     } else {
       const data = {
-        name: firstName + " " + lastName,
+        name,
         email,
         contactNo: phone,
         password,
@@ -66,7 +66,7 @@ const RegisterForm = () => {
       router.push("/login");
     }
   }, [responseData]);
-
+  console.log(error);
   return (
     <div className="h-screen flex">
       <div className="flex flex-col justify-center items-center w-full pb-4 bg-gray-300">
@@ -79,10 +79,7 @@ const RegisterForm = () => {
               <div className="">
                 <div className="flex items-center gap-2 w-full">
                   <div className="flex mb-4 w-full">
-                    <Input type="text" className="" placeholder="First Name" value={firstName} required onChange={(e) => setFirstName(e.target.value)} />
-                  </div>
-                  <div className="flex mb-4 w-full">
-                    <Input type="text" className="" placeholder="Last Name" value={lastName} required onChange={(e) => setLastName(e.target.value)} />
+                    <Input type="text" className="" placeholder="Name" value={name} required onChange={(e) => setName(e.target.value)} />
                   </div>
                 </div>
                 <div className="flex mb-4">

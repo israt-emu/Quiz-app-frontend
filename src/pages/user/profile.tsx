@@ -10,10 +10,6 @@ import {useState} from "react";
 export default function profile() {
   const userId = useAppSelector((state) => state.auth.user.id);
   const {data: user, isLoading} = useGetSingleUserQuery(userId);
-  // Initialize state to hold form input values
-  console.log(user);
-
-  console.log(user);
 
   return isLoading ? (
     <h1 className="text-4xl m-3 font-bold">Loading....</h1>

@@ -17,7 +17,7 @@ import {useGetSingleUserQuery} from "@/redux/features/users/userApi";
 const UpperNav = () => {
   const {user} = useAppSelector((state) => state?.auth);
   const {data: userData} = useGetSingleUserQuery(user?.id);
-
+  console.log(user);
   const dispatch = useAppDispatch();
 
   const router = useRouter();

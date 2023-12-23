@@ -14,7 +14,7 @@ const initialState: IUserState = {
     token: null,
     email: null,
     id: null,
-    role: null
+    role: null,
   },
   isLoading: false,
 };
@@ -38,7 +38,7 @@ export const authSlice = createSlice({
 
       // loggedin user
       const user = parseJwt(token);
-      state.user.email = user?.email;
+      state.user.email = user?.userEmail;
       state.user.id = user?.userId;
       state.user.role = user?.role;
     },

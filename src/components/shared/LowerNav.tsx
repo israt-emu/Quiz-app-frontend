@@ -4,11 +4,9 @@ import {ShoppingBasket} from "lucide-react";
 import Image from "next/image";
 import {Button} from "../ui/button";
 import {useAppSelector} from "@/redux/hooks";
-import {useGetSingleCartQuery} from "@/redux/features/cart/cartApi";
 const LowerNav = () => {
   const {user} = useAppSelector((state) => state?.auth);
-  const {data} = useGetSingleCartQuery(user.id);
-  const cartTotal = data?.data?.length;
+
   return (
     <div className="h-full w-full bg-white ">
       <div className="container flex items-center justify-between w-11/12 h-full mx-auto">
@@ -46,10 +44,7 @@ const LowerNav = () => {
             )}
             {/* //cart  */}
             <li>
-              <Link href="/cart" className="text-gray-900 flex items-center">
-                <ShoppingBasket />
-                <p>({cartTotal})</p>
-              </Link>
+              <Link href="/cart" className="text-gray-900 flex items-center"></Link>
             </li>
           </ul>
         </div>

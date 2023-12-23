@@ -15,6 +15,7 @@ const UserProfile = ({user}: IUserProps) => {
     contactNo: user?.contactNo,
     profileImg: user?.profileImg,
     address: user?.address,
+    email: user?.email,
   });
 
   //setting form data for edit
@@ -30,7 +31,7 @@ const UserProfile = ({user}: IUserProps) => {
   // Handle form submission
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    updateUser({id: user?._id, data: formData});
+    updateUser({id: user?.id, data: formData});
   };
   //showing success or error message
   const router = useRouter();
@@ -45,34 +46,39 @@ const UserProfile = ({user}: IUserProps) => {
   }, [isSuccess, isError, data, router]);
 
   return (
-    <div className="w-10/12 mx-auto mt-4">
-      <h1 className="text-3xl font-semibold text-center mb-3 font-serif ">Profile</h1>
-      <form onSubmit={handleSubmit} className="px-8 py-8 bg-gray-200 rounded">
+    <div className="w-10/12 mx-auto mt-16 h-screen">
+      <h1 className="text-3xl font-semibold text-center mb-3 font-serif ">Your Profile</h1>
+      <form onSubmit={handleSubmit} className="w-9/12 mx-auto px-8 py-8 bg-gray-200 rounded">
         <div className="grid grid-cols-2 items-center gap-2 w-full my-2">
           <div className="flex flex-col">
             <label htmlFor="name">Name</label>
-            <Input type="text" id="name" name="name" value={formData?.name} onChange={handleInputChange} required className="rounded" />
+            <Input type="text" id="name" name="name" value={formData?.name} onChange={handleInputChange} required className="rounded text-lg my-4" />
+          </div>
+
+          <div className="flex flex-col">
+            <label htmlFor="email">Email</label>
+            <Input type="email" id="email" name="email" value={formData?.email} disabled className="rounded text-lg my-4" />
           </div>
         </div>
         <div className="grid grid-cols-2 items-center gap-2 w-full my-2">
           <div className="flex flex-col">
-            <label htmlFor="phoneNumber">Phone Number</label>
-            <Input type="text" id="contactNo" name="contactNo" defaultValue={formData?.contactNo} onChange={handleInputChange} required className="rounded" />
+            <label htmlFor="contactNo">Phone Number</label>
+            <Input type="text" id="contactNo" name="contactNo" defaultValue={formData?.contactNo} onChange={handleInputChange} required className="rounded text-lg my-4" />
           </div>
-          <div className="flex flex-col">
-            <label htmlFor="profileImg">Profile</label>
-            <Input type="text" id="profileImg" name="profileImg" value={formData?.profileImg} onChange={handleInputChange} required className="rounded" />
-          </div>
-        </div>
-        <div className="grid grid-cols-2 items-center gap-2 w-full my-2">
           <div className="flex flex-col">
             <label htmlFor="address">Address</label>
-            <Input type="text" id="address" name="address" value={formData?.address} onChange={handleInputChange} required className="rounded" />
+            <Input type="text" id="address" name="address" value={formData?.address} onChange={handleInputChange} required className="rounded text-lg my-4" />
+          </div>
+        </div>
+        <div className="grid grid-cols-2 items-center gap-2 w-full my-2">
+          <div className="flex flex-col">
+            <label htmlFor="profileImg">Profile</label>
+            <Input type="text" id="profileImg" name="profileImg" value={formData?.profileImg} onChange={handleInputChange} required className="rounded  text-lg my-4" />
           </div>
         </div>
 
         <div className="flex justify-center">
-          <Button className="mt-2" type="submit">
+          <Button className="mt-2 w-1/6 text-lg" type="submit">
             Save
           </Button>
         </div>
