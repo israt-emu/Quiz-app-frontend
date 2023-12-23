@@ -12,9 +12,9 @@ import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/c
 import {DataTablePagination} from "./DataTablePagination";
 import {ChevronDownIcon} from "@radix-ui/react-icons";
 import BookingTableAction from "./BookingTableAction";
-import {useGetAllUsersQuery} from "@/redux/features/auth/authApi";
 import {IUser} from "@/interfaces/user";
 import UserTableAction from "./UserTableAction";
+import {useGetUsersQuery} from "@/redux/features/users/userApi";
 //defining table column
 export const columns: ColumnDef<IUser>[] = [
   {
@@ -25,31 +25,21 @@ export const columns: ColumnDef<IUser>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "firstName",
+    accessorKey: "name",
     header: ({column}) => {
       return (
         <Button variant="ghost" className="hover:bg-gray-300 text-gray-200" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-          First Name
+          Name
         </Button>
       );
     },
     cell: ({row}) => (
       <div className="capitalize">
-        <span className={`px-3 py-1 rounded-2xl`}>{row.original.name.firstName}</span>
+        <span className={`px-3 py-1 rounded-2xl`}>{row.original.name}</span>
       </div>
     ),
   },
-  {
-    accessorKey: "lastName",
-    header: ({column}) => {
-      return (
-        <Button variant="ghost" className="hover:bg-gray-300 text-gray-200" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-          Last Name
-        </Button>
-      );
-    },
-    cell: ({row}) => <div className="lowercase">{row.original.name.lastName}</div>,
-  },
+
   {
     accessorKey: "email",
     header: ({column}) => {
@@ -62,7 +52,7 @@ export const columns: ColumnDef<IUser>[] = [
     cell: ({row}) => <div className="lowercase">{row.getValue("email")}</div>,
   },
   {
-    accessorKey: "phoneNumber",
+    accessorKey: "contactNo",
     header: ({column}) => {
       return (
         <Button variant="ghost" className="hover:bg-gray-300 text-gray-200" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
@@ -89,13 +79,13 @@ export const columns: ColumnDef<IUser>[] = [
     cell: ({row}) => {
       const user = row.original;
 
-      return <UserTableAction id={user?._id} />;
+      return <UserTableAction id={user?.id} />;
     },
   },
 ];
 //table
 const UserTable = () => {
-  const {data, isLoading} = useGetAllUsersQuery("");
+  const {data, isLoading} = useGetUsersQuery("");
   console.log(data);
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
@@ -175,7 +165,7 @@ const UserTable = () => {
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
+              table.getRowModel().rows?.map((row) => (
                 <TableRow key={row.id} data-state={row.getIsSelected() && "selected"} className="bg-gray-200 border-b border-gray-300">
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id} className="text-center">

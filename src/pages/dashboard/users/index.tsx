@@ -1,10 +1,10 @@
 import UserTable from "@/components/table/UserTable";
 import DashboardLayout from "@/layouts/Admin";
-import {useGetAllUsersQuery} from "@/redux/features/auth/authApi";
+import {useGetUsersQuery} from "@/redux/features/users/userApi";
 import React from "react";
 
 export default function users() {
-  const {data} = useGetAllUsersQuery("");
+  const {data} = useGetUsersQuery("");
 
   return (
     <DashboardLayout>

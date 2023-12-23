@@ -37,34 +37,19 @@ const Sidebar = () => {
               </Link>
             </li>
 
-            <li className={`${active === "addService" ? "link-active" : "link-hover"}`}>
-              <Link href="/dashboard/services/addService" className="link-styles">
-                Add Service
-              </Link>
-            </li>
-            <li className={`${active === "services" ? "link-active" : "link-hover"}`}>
-              <Link href="/dashboard/services" className="link-styles">
-                Services
-              </Link>
-            </li>
-            <li className={`${active === "faq" ? "link-active" : "link-hover"}`}>
-              <Link href="/dashboard/faq" className="link-styles">
-                FAQs
-              </Link>
-            </li>
             <li className={`${active === "blogs" ? "link-active" : "link-hover"}`}>
               <Link href="/dashboard/blogs" className="link-styles">
                 Blogs
               </Link>
             </li>
-            <li className={`${active === "feedbacks" ? "link-active" : "link-hover"}`}>
-              <Link href="/dashboard/feedbacks" className="link-styles">
-                Feedbacks
+            <li className={`${active === "categories" ? "link-active" : "link-hover"}`}>
+              <Link href="/dashboard/categories" className="link-styles">
+                Categories
               </Link>
             </li>
-            <li className={`${active === "bookings" ? "link-active" : "link-hover"}`}>
-              <Link href="/dashboard/bookings" className="link-styles">
-                Bookings
+            <li className={`${active === "quizes" ? "link-active" : "link-hover"}`}>
+              <Link href="/dashboard/quizes" className="link-styles">
+                Quizzes
               </Link>
             </li>
             <li className={`${active === "users" ? "link-active" : "link-hover"}`}>
