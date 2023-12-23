@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: rgb(235, 234, 234);
+    --foreground: #0f0f0f;
+
+    --card: rgb(149, 86, 112);
+    --card-foreground: #0f0f0f;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: rgb(149, 86, 112);
+    --primary-foreground: #0f0f0f;
+
+    --secondary: rgb(17, 57, 70);
+    --secondary-foreground: #fefefe;
+
+    --muted: rgb(234, 215, 187);
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: rgb(207, 120, 157);
+    --accent-foreground: #0f0f0f;
+
+    --destructive: rgb(188, 163, 127);
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+  .link-styles {
+    @apply flex gap-1 items-center py-3 px-3 font-semibold;
+  }
+  .link-active {
+    @apply bg-primary;
+  }
+  .link-hover:hover {
+    @apply bg-muted text-gray-800;
+  }
+  .gradient {
+    background: rgb(17, 57, 70);
+    background: linear-gradient(90deg, rgba(17, 57, 70, 1) 0%, rgba(207, 120, 157, 1) 100%);
+  }
+  .banner-home {
+    background-image: linear-gradient(rgba(17, 57, 70, 0.9), rgba(207, 120, 157, 0.4)), url("../../assets//banner.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .button-shadow {
+    box-shadow: 4px 14px 42px 3px rgba(43, 114, 138, 0.233);
+    -webkit-box-shadow: 4px 14px 42px 3px rgba(43, 114, 138, 0.233);
+    -moz-box-shadow: 4px 14px 42px 3px rgba(43, 114, 138, 0.233);
+  }
+  .card-shadow {
+    box-shadow: 4px 18px 20px 3px rgba(43, 114, 138, 0.233);
+    -webkit-box-shadow: 4px 18px 20px 3px rgba(43, 114, 138, 0.233);
+    -moz-box-shadow: 4px 18px 20px 3px rgba(43, 114, 138, 0.233);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
